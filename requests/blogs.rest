@@ -1,0 +1,29 @@
+GET http://localhost:3003/api/blogs HTTP/1.1
+
+###
+GET http://localhost:3003/api/blogs/63d0620ecb191534126a77a4 HTTP/1.1
+
+###
+POST http://localhost:3003/api/blogs HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Testing blog",
+    "author": "FName LName",
+    "url": "url",
+    "likes": 200
+}
+
+###
+PUT http://localhost:3003/api/blogs/63d043b66f9448c64893fc79 HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Daily Stoic",
+    "author": "Ryan Holiday",
+    "url": "url",
+    "likes": 438270
+}
+
+###
+DELETE http://localhost:3003/api/blogs/63d158e00ed7dc6f47a35d4d HTTP/1.1
