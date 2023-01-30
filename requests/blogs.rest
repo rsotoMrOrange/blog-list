@@ -1,28 +1,28 @@
 GET http://localhost:3003/api/blogs HTTP/1.1
 
 ###
-GET http://localhost:3003/api/blogs/63d0620ecb191534126a77a4 HTTP/1.1
+GET http://localhost:3003/api/blogs/63d043b66f9448c64893fc79 HTTP/1.1
 
 ###
 POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Testing blog",
-    "author": "FName LName",
+    "title": "Finance Blog",
+    "author": "Laura White",
     "url": "url",
-    "likes": 200
+    "likes": 66303
 }
 
 ###
-PUT http://localhost:3003/api/blogs/63d043b66f9448c64893fc79 HTTP/1.1
+PUT http://localhost:3003/api/blogs/63d3fd7f46467c341e318b21 HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Daily Stoic",
-    "author": "Ryan Holiday",
+    "title": "Finance Blog",
+    "author": "Laura White",
     "url": "url",
-    "likes": 438270
+    "likes": 82240
 }
 
 ###
