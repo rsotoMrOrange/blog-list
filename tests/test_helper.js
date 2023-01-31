@@ -23,6 +23,7 @@ const initialBlogs = [
 
 const nonExistingId = async () => {
   const blog = new Blog({
+    title: 'Movie production',
     author: 'Dave Decker',
     url: 'url',
     likes: 8792
