@@ -1,0 +1,32 @@
+GET http://localhost:3003/api/blogs HTTP/1.1
+
+###
+GET http://localhost:3003/api/blogs/63d043b66f9448c64893fc79 HTTP/1.1
+
+###
+POST http://localhost:3003/api/blogs HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJpY2Fzb3RvIiwiaWQiOiI2M2Q5OTYzMzIwYmZmZmM3MTIzNDc1MTYiLCJpYXQiOjE2NzUzODA4MTEsImV4cCI6MTY3NTM4NDQxMX0.Et0BEOg6jalJinNIC0CDLe2K4ltxLIP-5Vkp1MVa1tw
+
+{
+    "title": "Authentication methods",
+    "author": "Test author",
+    "url": "url",
+    "likes": 89302,
+    "userId": "63d9963320bfffc712347516"
+}
+
+###
+PUT http://localhost:3003/api/blogs/63dc4a91c338342c423dca4d HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Technical blog",
+    "author": "Helsinki University",
+    "url": "url",
+    "likes": 20000,
+    "userId": "63d9963320bfffc712347516"
+  }
+
+###
+DELETE http://localhost:3003/api/blogs/63dc43ac362c8c76bb009130 HTTP/1.1
