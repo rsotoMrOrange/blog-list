@@ -41,13 +41,17 @@ blogsRouter.post('/', async (request, response) => {
 
 blogsRouter.put('/:id', async (request, response) => {
   const blog = request.body
-  logger.info('request.params.id: ', request.params.id)
+  blog.user = request.body.user.id
+
+  const user = await User.findById(blog.user)
 
   const updatedBlog = await Blog.findByIdAndUpdate(
     request.params.id,
     blog,
     { new: true, runValidators: true, context: 'query' }
   )
+
+  updatedBlog.user = user;
   response.json(updatedBlog)
 })
 
