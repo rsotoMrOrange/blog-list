@@ -38,6 +38,7 @@ usersRouter.post('/', async (request, response) => {
 })
 
 usersRouter.put('/:id', async (request, response) => {
+  console.info('userRouter.put')
   const user = request.body
 
   const updatedUser = await User.findByIdAndUpdate(

@@ -1,6 +1,7 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
 const User = require('../models/user')
+const logger = require('../utils/logger')
 
 blogsRouter.get('/', async (request, response) => {
   const blogs = await Blog
@@ -40,6 +41,7 @@ blogsRouter.post('/', async (request, response) => {
 
 blogsRouter.put('/:id', async (request, response) => {
   const blog = request.body
+  logger.info('request.params.id: ', request.params.id)
 
   const updatedBlog = await Blog.findByIdAndUpdate(
     request.params.id,
