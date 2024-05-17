@@ -28,10 +28,35 @@ const Comment = require('../models/comment')
  *          application/json:
  *            schema:
  *              type: object
+ *              properties:
+ *               id:
+ *                 type: String
+ *                 description: the document's id
+ *                 example: 63ec7633739ae4db29d4ff75
+ *               title:
+ *                 type: String
+ *                 description: the blog's title
+ *                 example: React in Depth
+ *               author:
+ *                 type: String
+ *                 example: Dan Abrahamov
+ *               url:
+ *                 type: String
+ *                 example: https://overreacted.io/
+ *               likes:
+ *                 type: Number
+ *                 example: 230598
+ *               user:
+ *                 type: String
+ *                 description: The user that created this blog
+ *                 example: 63d9963320bfffc712347516
+ *               comments:
+ *                 type: array
+ *                 example: [{ content: "Great blog!", blog: "63ec7633739ae4db29d4ff75", id: "664651373e6a0b529d0847f5" }]
 */
 blogsRouter.get('/', async (request, response) => {
   const blogs = await Blog
-    .find({}).populate('user', { username: 1, name: 1 })
+    .find({}).populate('user', { username: 1, name: 1 }).populate('comments')
   response.json(blogs)
 })
 
@@ -56,6 +81,31 @@ blogsRouter.get('/', async (request, response) => {
  *          application/json:
  *            schema:
  *              type: object
+ *              properties:
+ *               id:
+ *                 type: String
+ *                 description: the document's id
+ *                 example: 63ec7633739ae4db29d4ff75
+ *               title:
+ *                 type: String
+ *                 description: the blog's title
+ *                 example: React in Depth
+ *               author:
+ *                 type: String
+ *                 example: Dan Abrahamov
+ *               url:
+ *                 type: String
+ *                 example: https://overreacted.io/
+ *               likes:
+ *                 type: Number
+ *                 example: 230598
+ *               user:
+ *                 type: String
+ *                 description: The user that created this blog
+ *                 example: 63d9963320bfffc712347516
+ *               comments:
+ *                 type: array
+ *                 example: [{ content: "Great blog!", blog: "63ec7633739ae4db29d4ff75", id: "664651373e6a0b529d0847f5" }]
 */
 blogsRouter.get('/:id', async (request, response) => {
   const blog = await Blog.findById(request.params.id).populate('user', { username: 1, name: 1 }).populate('comments')
@@ -127,7 +177,7 @@ blogsRouter.get('/:id', async (request, response) => {
  *                 example: 63d9963320bfffc712347516
  *               comments:
  *                 type: array
- *                 example: [ "664651373e6a0b529d0847f5" ]
+ *                 example: []
 */
 blogsRouter.post('/', async (request, response) => {
   const body = request.body
@@ -256,6 +306,9 @@ blogsRouter.post('/:id/comments', async (request, response) => {
  *               likes:
  *                 type: Number
  *                 example: 230598
+ *               comments:
+ *                 type: array
+ *                 example: [{ content: "Great blog!", blog: "63ec7633739ae4db29d4ff75", id: "664651373e6a0b529d0847f5" }]
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -282,7 +335,7 @@ blogsRouter.post('/:id/comments', async (request, response) => {
  *                 example: https://overreacted.io/
  *               likes:
  *                 type: Number
- *                 example: 230599
+ *                 example: 230598
  *               user:
  *                 type: String
  *                 description: The user that created this blog
@@ -296,6 +349,10 @@ blogsRouter.put('/:id', async (request, response) => {
   blog.user = request.body.user.id
 
   const user = await User.findById(blog.user)
+
+  if (blog.comments[0]?.id !== undefined) {
+    blog.comments = blog.comments.map(comment => comment.id)
+  }
 
   const updatedBlog = await Blog.findByIdAndUpdate(
     request.params.id,
