@@ -11,7 +11,7 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  apis: ['./controllers/blogs.js'],
+  apis: ['./controllers/*.js'],
 }
 
 const swaggerSpec = swaggerJSDoc(options)
