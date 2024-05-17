@@ -18,6 +18,8 @@ const Comment = require('../models/comment')
  * /api/blogs/:
  *   get:
  *     summary: Retrieve a list of blogs
+ *     tags:
+ *       - blogs
  *     description: Retrieve a list of blogs
  *     responses:
  *      '200':
@@ -38,6 +40,8 @@ blogsRouter.get('/', async (request, response) => {
  * /api/blogs/{id}:
  *   get:
  *     summary: Retrieve a single blog by Id
+ *     tags:
+ *       - blogs
  *     description: Retrieve a single blog by providing an Id through the uri
  *     parameters:
  *      - in: path
@@ -67,6 +71,8 @@ blogsRouter.get('/:id', async (request, response) => {
  * /api/blogs/:
  *   post:
  *     summary: Create a new Blog. Requires JWT token to execute
+ *     tags:
+ *       - blogs
  *     description: Create a new blog. Requires JWT token to execute
  *     requestBody:
  *       required: true
@@ -149,6 +155,8 @@ blogsRouter.post('/', async (request, response) => {
  * /api/blogs/{id}/comments:
  *   post:
  *     summary: Create a new comment for a blog. Requires JWT token to execute
+ *     tags:
+ *       - blogs
  *     description: Create a new comment for a blog. Requires JWT token to execute
  *     parameters:
  *      - in: path
@@ -225,6 +233,8 @@ blogsRouter.post('/:id/comments', async (request, response) => {
  * /api/blogs/:
  *   put:
  *     summary: Like an existing blog. Requires JWT token to execute
+ *     tags:
+ *       - blogs
  *     description: Like an existing blog. Requires JWT token to execute
  *     requestBody:
  *       required: true
@@ -302,6 +312,8 @@ blogsRouter.put('/:id', async (request, response) => {
  * /api/blogs/{id}:
  *   delete:
  *     summary: Delete a single blog. Requires JWT to execute
+ *     tags:
+ *       - blogs
  *     description: Delete a single blog. Requires JWT to execute
  *     parameters:
  *      - in: path
