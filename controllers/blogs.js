@@ -147,7 +147,7 @@ blogsRouter.post('/', async (request, response) => {
   user.blogs = user.blogs.concat(savedBlog._id)
   await user.save()
 
-  response.statusCode(201).json(savedBlog)
+  response.status(201).json(savedBlog)
 })
 
 /**
@@ -225,7 +225,7 @@ blogsRouter.post('/:id/comments', async (request, response) => {
   await blog.save()
 
   await blog.populate('comments')
-  response.statusCode(201).json(blog)
+  response.status(201).json(blog)
 })
 
 /**
@@ -304,7 +304,7 @@ blogsRouter.put('/:id', async (request, response) => {
   )
 
   updatedBlog.user = user
-  response.statusCode(201).json(updatedBlog)
+  response.status(201).json(updatedBlog)
 })
 
 /**
