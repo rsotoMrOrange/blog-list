@@ -8,7 +8,9 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "lint": "eslint",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
-    "start:test": "NODE_ENV=test node index.js"
+    "start:test": "NODE_ENV=test node index.js",
+    "build:ui": "rm -rf dist && cd ../submission-repository/part7/bloglist-frontend && npm run build && cp -r dist ../../../blog-list",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
   },
   "repository": {
     "type": "git",
